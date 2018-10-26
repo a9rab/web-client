@@ -24,7 +24,7 @@
           center: {lat: 35.0, lng: 2.7},
           zoom: 8
         });
-        a.get('/positions?email=<%= User.current&.email %>').then(({data}) => {
+        a.get('/positions?email=<%= current_user&.email %>').then(({data}) => {
           var i = 0;
           data.forEach(point => {
               i++;

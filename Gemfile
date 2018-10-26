@@ -55,3 +55,4 @@ end
 
 
 gem 'request_store'
+gem 'devise'
