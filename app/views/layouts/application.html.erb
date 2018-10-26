@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>a9rab</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <% flash.each do |name, msg| %>
+      <notification type="<%= notification_class name %>" :dismissible="true" :float="true">
+        <%= msg %>
+      </notification>
+    <% end %>
+
+    <%= yield %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 35.0, lng: 2.7},
+          zoom: 8
+        });
+        a.get('/positions?email=<%= User.current&.email %>').then(({data}) => {
+          var i = 0;
+          data.forEach(point => {
+              i++;
+              var marker = new google.maps.Marker({
+                position: point,
+                map: map,
+                title: point.name
+              });
+          })
+        });
+      }
+
+      function setCenter(lat, lng) {
+        map.setCenter({lat: lat, lng: lng});
+        map.setZoom(22);
+      }
+    </script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB38O_Q-oXmwx1Cu4r3Ak9nGv9ypJN5Zxs&callback=initMap" async defer></script>
+  </body>
+</html>

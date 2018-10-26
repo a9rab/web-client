@@ -1,0 +1,31 @@
+<div class="columns is-marginless">
+    <div class="column is-one-quarter sidebar">
+        <img src="<%= asset_path 'logo.png' %>" alt="a9rab" class="logo">
+        <hr>
+        <div class="columns">
+            <%- @family_members.each do |member| %>
+                <div class="column is-one-third has-text-centered">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="user">
+                                <i class="fa fa-user-circle fa-4x"></i>
+                                <strong><%= member.name %></strong>
+                            </div>
+                            <hr>
+                            <div class="status">
+                                <i class="fa fa-circle" title="Online"></i>
+                                <i class="fa fa-map-marker-alt" onClick="setCenter(<%=member.last_known_location.lat%>, <%=member.last_known_location.lng%>)" title="Position"></i>
+                                <i class="fa fa-eye" a title="Last seen"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="columns">
+
+        </div>
+    </div>
+    <div class="column" id="map">
+    </div>
+</div>
