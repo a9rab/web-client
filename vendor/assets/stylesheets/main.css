@@ -12203,3 +12203,7 @@ label.panel-block:hover {
   margin-right: 0;
 }
 
+form.new_message {
+  width: 100%;
+}
+

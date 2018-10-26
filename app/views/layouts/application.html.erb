@@ -4,8 +4,14 @@
     <title>a9rab</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+      window.current_user = <%= current_user.to_json.html_safe %>
+    </script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -16,7 +22,8 @@
     <% end %>
 
     <%= yield %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'app', 'data-turbolinks-track': 'reload' %>
     <script>
       var map;
       function initMap() {

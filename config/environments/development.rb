@@ -63,4 +63,5 @@ Rails.application.configure do
       g.assets = false
       g.helper = false
   end
+  config.action_cable.url = "ws://localhost:3000/cable"
 end

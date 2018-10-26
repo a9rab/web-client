@@ -1,0 +1,16 @@
+function createMessageChannel() {
+    App.messages = App.cable.subscriptions.create({
+        channel: 'MessagesChannel',
+        chat_id: parseInt($("#message_chat_id").val())
+    }, {
+        received: function (data) {
+            $("#messages").removeClass('hidden')
+            return $('#messages').append(this.renderMessage(data));
+        },
+        renderMessage: function (data) {
+            var dir = data.user == current_user.name ? 'rtl' : 'ltr';
+            return  "<div class=\"box-container\" style=\"direction: "+ dir +"; margin-bottom: 5px;\"><div class=\"box\" style=\"width: fit-content; direction: ltr;\">"+data.message+"</div></div>";
+        },
+    });
+    return App.messages;
+}

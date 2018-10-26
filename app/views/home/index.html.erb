@@ -13,7 +13,7 @@
                             </div>
                             <hr>
                             <div class="status">
-                                <i class="fa fa-circle" title="Online"></i>
+                                <i class="fa fa-circle" onClick="openWindowWithPost('<%= user_chats_path(current_user, other_user: member.id) %>', {other_user: <%= member.id %>});" title="Online"></i>
                                 <i class="fa fa-map-marker-alt" onClick="setCenter(<%=member.last_known_location.lat%>, <%=member.last_known_location.lng%>)" title="Position"></i>
                                 <i class="fa fa-eye" a title="Last seen"></i>
                             </div>
@@ -29,3 +29,14 @@
     <div class="column" id="map">
     </div>
 </div>
+
+<script>
+function openWindowWithPost(url, data) {
+    a.post(url, data).then(function (res) {
+        popupWindow = window.open(res.data, "popupWindow", "width=800, height=800, scrollbars=no, bottom=15")
+        popupWindow.onload = function () {
+            popupWindow.scrollTo(0, popupWindow.document.body.scrollHeight);
+        };
+    });
+}
+</script>

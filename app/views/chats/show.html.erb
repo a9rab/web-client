@@ -1,0 +1,29 @@
+<div class="card">
+  <% if @chat.messages.any? %>
+    <header class="card-header" style="position: fixed; top:0; background-color: #fff; width: 100%;">
+        <p class="card-header-title">
+            <i class="fa fa-user-circle fa-5x" style="margin-right: 15px;"></i> Chat with <%= @other_user.name %>
+        </p>
+    </header>
+    <div class="card-content" style="padding-top: 125px;">
+        <div class="content">
+            <div id="messages">
+                <%= render partial: 'messages/message', collection: @chat.messages.order(id: :asc)%>
+            </div>
+        </div>
+    </div>
+  <%else%>
+    <div id="messages">
+    </div>
+  <%end%>
+    <footer class="" style="width: 100%; padding: 0 10px 10px 10px;">
+        <%= render partial: 'messages/message_form', locals: {message: @message, chat: @chat}%>
+    </footer>
+</div>
+</div>
+<script>
+  createMessageChannel();
+  // app/assets/javascripts/channels/messages.js
+  messageForm();
+  // app/assets/javascripts/messages_form.js
+</script>
