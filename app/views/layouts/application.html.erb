@@ -23,32 +23,7 @@
 
     <%= yield %>
 
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB38O_Q-oXmwx1Cu4r3Ak9nGv9ypJN5Zxs"></script>
     <%= javascript_include_tag 'app', 'data-turbolinks-track': 'reload' %>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 35.0, lng: 2.7},
-          zoom: 8
-        });
-        a.get('/positions?email=<%= current_user&.email %>').then(({data}) => {
-          var i = 0;
-          data.forEach(point => {
-              i++;
-              var marker = new google.maps.Marker({
-                position: point,
-                map: map,
-                title: point.name
-              });
-          })
-        });
-      }
-
-      function setCenter(lat, lng) {
-        map.setCenter({lat: lat, lng: lng});
-        map.setZoom(22);
-      }
-    </script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB38O_Q-oXmwx1Cu4r3Ak9nGv9ypJN5Zxs&callback=initMap" async defer></script>
   </body>
 </html>

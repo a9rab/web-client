@@ -3,7 +3,9 @@ class PositionsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def index
-        render json: User.find_by_email(params[:email]).family.members.map(&:last_known_location)
+        unless params[:email].nil?
+            render json: User.find_by_email(params[:email]).family.members.where.not(email: params[:email]).map(&:last_known_location)
+        end
     end
 
     def show

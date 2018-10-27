@@ -13,9 +13,9 @@
                             </div>
                             <hr>
                             <div class="status">
-                                <i class="fa fa-circle" onClick="openWindowWithPost('<%= user_chats_path(current_user, other_user: member.id) %>', {other_user: <%= member.id %>});" title="Online"></i>
-                                <i class="fa fa-map-marker-alt" onClick="setCenter(<%=member.last_known_location.lat%>, <%=member.last_known_location.lng%>)" title="Position"></i>
-                                <i class="fa fa-eye" a title="Last seen"></i>
+                                <i class="fa fa-comments" onClick="openWindowWithPost('<%= user_chats_path(current_user, other_user: member.id) %>', {other_user: <%= member.id %>});" title="Instant messaging"></i>
+                                <i class="fa fa-map-marker-alt" title="Position"></i>
+                                <i class="fa fa-eye" title="<%= time_ago_in_words(member.created_at) %>"></i>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,8 @@
 
         </div>
     </div>
-    <div class="column" id="map">
+    <div class="column" id="app" style="padding: 0 !important;">
+        <google-maps></google-maps>
     </div>
 </div>
 

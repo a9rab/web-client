@@ -1,5 +1,9 @@
 @import "~bulma/bulma";
 
+html, body {
+    overflow: auto;
+}
+
 .user-card {
     margin-bottom: 1em;
 }
@@ -47,3 +51,20 @@
 }
 
 form.new_message { width: 100%; }
+
+.message {
+    &-rtl {
+        direction: rtl;
+        & > .box {
+            background-color: #2C92E2;
+            color: #ffffff;
+        }
+    }
+    &-ltr {
+        direction: ltr;
+        & > .box {
+            background-color: #40AF52;
+            color: #ffffff;
+        }
+    }
+}

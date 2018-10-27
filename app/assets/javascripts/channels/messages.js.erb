@@ -4,12 +4,13 @@ function createMessageChannel() {
         chat_id: parseInt($("#message_chat_id").val())
     }, {
         received: function (data) {
-            $("#messages").removeClass('hidden')
-            return $('#messages').append(this.renderMessage(data));
+            $("#messages").removeClass('hidden');
+            $('#messages').append(this.renderMessage(data));
+            return window.scrollTo(0, document.body.scrollHeight);
         },
         renderMessage: function (data) {
             var dir = data.user == current_user.name ? 'rtl' : 'ltr';
-            return  "<div class=\"box-container\" style=\"direction: "+ dir +"; margin-bottom: 5px;\"><div class=\"box\" style=\"width: fit-content; direction: ltr;\">"+data.message+"</div></div>";
+            return  "<div class=\"box-container message-" + dir + "\" style=\"margin-bottom: 5px;\"><div class=\"box\" style=\"width: fit-content; direction: ltr;\">"+data.message+"</div></div>";
         },
     });
     return App.messages;

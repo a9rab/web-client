@@ -1,4 +1,4 @@
-<div class="box-container" style="direction: <%= message.user == current_user ? 'rtl' : 'ltr' %>; margin-bottom: 5px;">
+<div class="box-container message-<%= message.user == current_user ? 'rtl' : 'ltr' %>" style=" margin-bottom: 5px;">
     <div class="box" style="width: fit-content; direction: ltr;">
         <%=message.content%>
     </div>

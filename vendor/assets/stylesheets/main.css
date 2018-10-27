@@ -12140,6 +12140,11 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+html,
+body {
+  overflow: auto;
+}
+
 .user-card {
   margin-bottom: 1em;
 }
@@ -12205,5 +12210,23 @@ label.panel-block:hover {
 
 form.new_message {
   width: 100%;
+}
+
+.message-rtl {
+  direction: rtl;
+}
+
+.message-rtl > .box {
+  background-color: #2C92E2;
+  color: #ffffff;
+}
+
+.message-ltr {
+  direction: ltr;
+}
+
+.message-ltr > .box {
+  background-color: #40AF52;
+  color: #ffffff;
 }
 

@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import axios from 'axios'
 import signUp from './components/sign-up.vue'
 import signIn from './components/sign-in.vue'
+import googleMaps from './components/google-maps.vue'
 
 // Set the X-CSRF header for all the requests
 axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name=csrf-token]').getAttribute('content')
@@ -21,10 +22,9 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
 new Vue({
     el: '#app',
-    components: {signUp, signIn},
+    components: {signUp, signIn, googleMaps},
     data () {
         return {
             firebase
