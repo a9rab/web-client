@@ -2,7 +2,8 @@
   <% if @chat.messages.any? %>
     <header class="card-header" style="position: fixed; top:0; background-color: #fff; width: 100%;">
         <p class="card-header-title">
-            <i class="fa fa-user-circle fa-5x" style="margin-right: 15px;"></i> Chat with <%= @other_user.name %>
+            <i class="fa fa-user-circle fa-5x" style="margin-right: 15px;"></i> Chat with <%= @other_user.name %> <br />
+            Last seen : <%= time_ago_in_words(@other_user.last_known_location.created_at) + ' ago' %>
         </p>
     </header>
     <div class="card-content" style="padding-top: 125px;">

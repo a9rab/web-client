@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def last_known_location
-    positions.limit(1)[0]
+    positions.last
   end
 
 end

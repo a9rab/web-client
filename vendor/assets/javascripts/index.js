@@ -48252,7 +48252,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.map = new google.maps.Map(document.querySelector('#map'), {
+        this.map = window.map = new google.maps.Map(document.querySelector('#map'), {
             center: { lat: 35.0, lng: 2.7 },
             zoom: 8
         });
@@ -48265,6 +48265,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
             _this.positions = data;
         });
+
+        console.log(this.getLocation());
     },
 
 
@@ -48286,6 +48288,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
 
             return marker;
+        },
+        getLocation: function getLocation() {
+            var _this2 = this;
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (_ref2) {
+                    var coords = _ref2.coords;
+
+                    var point = { lat: coords.latitude, lng: coords.longitude };
+                    _this2.map.setCenter(point);
+                    new google.maps.Circle({
+                        strokeColor: '#2C92E2',
+                        strokeOpacity: 0.7,
+                        strokeWeight: 1,
+                        fillColor: '#2C92E2',
+                        fillOpacity: 0.35,
+                        map: _this2.map,
+                        center: point,
+                        radius: 10000
+                    });
+                    _this2.map.setZoom(12);
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
         }
     }
 });

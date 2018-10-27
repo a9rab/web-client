@@ -12,7 +12,7 @@ export default {
     },
 
     mounted () {
-        this.map = new google.maps.Map(document.querySelector('#map'), {
+        this.map = window.map = new google.maps.Map(document.querySelector('#map'), {
           center: {lat: 35.0, lng: 2.7},
           zoom: 8
         })
@@ -23,6 +23,8 @@ export default {
             })
             this.positions = data;
         });
+
+        console.log(this.getLocation())
     },
 
     methods: {
@@ -48,6 +50,28 @@ export default {
 
             return marker;
         },
+
+        getLocation () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(({coords}) => {
+                    let point = {lat: coords.latitude, lng: coords.longitude}
+                    this.map.setCenter(point)
+                    new google.maps.Circle({
+                        strokeColor: '#2C92E2',
+                        strokeOpacity: 0.7,
+                        strokeWeight: 1,
+                        fillColor: '#2C92E2',
+                        fillOpacity: 0.35,
+                        map: this.map,
+                        center: point,
+                        radius: 10000
+                    });
+                    this.map.setZoom(12)
+                })
+            } else {
+                alert("Geolocation is not supported by this browser.")
+            }
+        }
     }
 }
 </script>
